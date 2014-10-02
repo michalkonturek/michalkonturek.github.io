@@ -1,0 +1,17 @@
+---
+layout: page
+title: Archives
+---
+
+<div id="blog-archives">
+  {% for post in site.posts reverse %}
+  {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+  {% unless year == this_year %}
+    {% assign year = this_year %}
+    <h3>{{ year }}</h3>
+  {% endunless %}
+  <article>
+    {% include archive_post.html %}
+  </article>
+  {% endfor %}
+</div>
