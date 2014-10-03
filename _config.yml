@@ -21,3 +21,6 @@ author:
   name:              Michal Konturek
   url:               https://twitter.com/michalkonturek
   email:             michal.konturek@gmail.com
+
+gems:
+  - jekyll-sitemap
