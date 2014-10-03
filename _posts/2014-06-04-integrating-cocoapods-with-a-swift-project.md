@@ -2,6 +2,7 @@
 layout: post
 title: "Integrating Cocoapods with a Swift project"
 date: 2014-06-04 16:12:59 +0100
+description: "How to integrate Cocoapods with a Swift project. Using Swift with Cococa and Objective-C."
 keywords: "ios, swift, cocoapods, wwdc 2014"
 ---
 

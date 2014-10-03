@@ -2,7 +2,8 @@
 layout: post
 title: "Implementing Unit conversion library for Objective-C"
 date: 2013-07-01 18:19:29 +0100
-keywords: "design patterns, ios, open-source"
+description: "Implementing unit conversion library in Objective-C using analysis design pattern for iOS."
+keywords: "design patterns, ios, open-source, units, analysis pattern"
 ---
 
 Last week I decided to implement unit conversion library for Objective-C called [MKUnits][MKUnits]. I was fully aware that there were many open-sourced implementation already available, but unfortunately none of them fitted my needs.

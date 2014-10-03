@@ -2,6 +2,7 @@
 layout: post
 title: "Setting Up an Octopress Blog on Github"
 date: 2013-06-15 18:47:07 +0100
+description: "A small tutorial how to install and set up Octopress blog on GitHub with a custom domain."
 keywords: "blog, github, octopress"
 ---
 

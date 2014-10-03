@@ -2,7 +2,8 @@
 layout: post
 title: "Setting Up Existing Octopress Blog on a New Machine"
 date: 2013-06-21 16:19:40 +0100
-keywords: "blog, github, octopress"
+description: "A small tutorial how to set up existing Octopress blog on a new machine."
+keywords: "blog, github, git, octopress"
 ---
 
 As any good blogging framework allows users to compose and publish posts from any computer, so does the [Octopress][octo]. However, the process of setting up [Octopress][octo] on a second machine is a bit more complex.
