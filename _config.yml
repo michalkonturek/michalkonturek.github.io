@@ -10,8 +10,8 @@ relative_permalinks: true
 
 # Setup
 title:               Michal Konturek
-tagline:             'Creating awesome things with code.'
-description:         ''
+tagline:             Creating awesome things with code.
+description:         'Nottingham blog of Michal Konturek on iOS development, Objective-C, Swift, Cocoa and CocoaTouch.'
 url:                 http://michal.codes
 baseurl:             /
 paginate:            5
