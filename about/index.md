@@ -16,15 +16,6 @@ According to the [Open Source Report Card][OSCD], I am one of the 3% most active
 [OSCD]:http://osrc.dfm.io/michalkonturek/
 [oscd-events]:http://osrc.dfm.io/michalkonturek/#events
 
-
-### About this site
-
-This blog is powered by [Poole][pl], the butler for [Jekyll][jk], and hosted on [GitHub Pages][gh-pages].
-
-[pl]:http://getpoole.com/
-[jk]:http://jekyllrb.com/
-[gh-pages]:https://pages.github.com/
-
 <!-- <p class="message">
   
 </p> -->
