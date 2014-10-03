@@ -12,11 +12,8 @@
   <meta name="keywords" content="iOS, Swift, Objective-C, Development, Nottingham, Programming, Tutorial">{% endif %}
 
   <title>
-    {% if page.title == "Home" %}
-      {{ site.title }} | {{ site.tagline }}
-    {% else %}
-      {{ page.title }} | {{ site.title }}
-    {% endif %}
+    {% if page.title == "Home" %} {{ site.title }} | {{ site.tagline }}
+    {% else %} {{ page.title }} | {{ site.title }} {% endif %}
   </title>
 
   <link rel="stylesheet" href="{{ site.baseurl }}public/css/poole.css">
