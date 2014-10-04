@@ -21,7 +21,7 @@
       {% if node.title != null %}
         {% if node.layout == "page" %}
           <!-- <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a> -->
-          <a class="sidebar-nav-item{% if page.title == node.title %} active{% endif %}" href="/{{ node.title | downcase}}">{{ node.title }}</a>
+          <a class="sidebar-nav-item{% if page.title == node.title %} active{% endif %}" href="/{{ node.title | downcase}}/">{{ node.title }}</a>
         {% endif %}
       {% endif %}
     {% endfor %}
