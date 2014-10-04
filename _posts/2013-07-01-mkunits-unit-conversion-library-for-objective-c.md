@@ -20,7 +20,7 @@ I required a library that:
 
 ### Quantity Pattern
 
-Before I started coding, I had a quick read through a chapter of [Analysis Patterns][analysis-patterns] by [Martin Fowler][martin-fowler], which describes the **Quantity Pattern**. This pattern is extremely useful when you want to represent dimensioned quantities.
+Before I started coding, I had a quick read through the chapter of [Analysis Patterns][analysis-patterns] by [Martin Fowler][martin-fowler], which describes the **Quantity Pattern**. This pattern is extremely useful when you want to represent dimensioned quantities.
 
 [analysis-patterns]:http://www.amazon.co.uk/Analysis-Patterns-Reusable-Object-Models/dp/0201895420
 [martin-fowler]:http://martinfowler.com/
