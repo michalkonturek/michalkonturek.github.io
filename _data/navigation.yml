@@ -3,8 +3,8 @@ main:
   - title: "About"
     url: /
 
-  - title: "Achives"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/navigation/
+  - title: "Archives"
+    url: /
 
-  - title: "Code"
+  - title: "Open Source"
     url: /

@@ -7,11 +7,11 @@
 
 # Site Settings
 locale                   : "en"
-title                    : "Creating awesome things with code"
+title                    : "Awesome things with code"
 title_separator          : "-"
 name                     : "Michal Konturek"
 description              : "Michal Konturek on mobile development; mainly iOS, Objective-C, Swift, Cocoa and CocoaTouch."
-url                      : "https://localhost"
+url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 gh_repo                  :
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
