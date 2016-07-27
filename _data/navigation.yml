@@ -1,10 +1,10 @@
 # main links links
 main:
   - title: "About"
-    url: /
+    url: /about
 
   - title: "Archives"
-    url: /
+    url: /archives
 
-  - title: "Open Source"
-    url: /
+  # - title: "OSS"
+  #   url: /oss

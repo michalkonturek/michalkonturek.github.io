@@ -5,6 +5,7 @@ author_profile: true
 related: true
 share: true
 read_time: true
+tags: [blog, github, git, octopress]
 
 date: 2013-06-21 16:19:40 +0100
 description: "A small tutorial how to set up existing Octopress blog on a new machine."

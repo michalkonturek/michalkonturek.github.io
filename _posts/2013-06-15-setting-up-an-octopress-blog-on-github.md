@@ -5,6 +5,7 @@ author_profile: true
 related: true
 share: true
 read_time: true
+tags: [blog, github, octopress]
 
 date: 2013-06-15 18:47:07 +0100
 description: "A small tutorial how to install and set up Octopress blog on GitHub with a custom domain."

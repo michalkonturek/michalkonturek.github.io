@@ -5,6 +5,7 @@ author_profile: true
 related: true
 share: true
 read_time: true
+tags: [ios, cocoapods, swift]
 
 date: 2014-06-04 16:12:59 +0100
 description: "How to integrate Cocoapods with a Swift project. Using Swift with Cococa and Objective-C."
