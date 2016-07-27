@@ -41,7 +41,7 @@ To expose Objective-C files to [Swift][swift] you must use **Objective-C bridgin
 
 To do so, you must create a new Objective-C header file, let's call it `Example-Bridging-Header.h`, and add it to the project. Then, you need to set `Objective-C Bridging Header` for your target:
 
-![Xcode Bridging Header](/public/images/xcode-bridge.png)
+![Xcode Bridging Header](/images/post-xcode-bridge.png)
 
 and finally add import statement to the **bridge header**:
 
