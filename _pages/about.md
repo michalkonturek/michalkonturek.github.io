@@ -12,10 +12,6 @@ In my spare time I create awesome things with code, which (most of them) I open 
 
 [MK]:https://github.com/michalkonturek
 
-<!-- <p class="message">
-  
-</p> -->
-
 ### License
 
 All original code on this website is Copyright © 2014 [Michal Konturek][ME] and licensed under the [MIT license][MIT].
