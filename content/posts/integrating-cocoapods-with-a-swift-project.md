@@ -1,7 +1,7 @@
 ---
 title: "Integrating Cocoapods with a Swift project"
 date: 2014-06-04T06:37:10+01:00
-draft: true
+draft: false
 toc: false
 images:
 tags:

@@ -1,7 +1,7 @@
 ---
 #title: "About"
 date: 2020-05-10T04:52:09+01:00
-draft: true
+draft: false
 ---
 
 ### Hello, I am Michal Konturek.
