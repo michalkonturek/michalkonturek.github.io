@@ -1,3 +1,75 @@
-baseURL = "http://example.org/"
+baseurl      = "http://michal.codes"
+title        = "My Blog"
 languageCode = "en-us"
-title = "My New Hugo Site"
+theme        = "hello-friend-ng"
+
+[params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
+
+  # Subtitle for home
+  homeSubtitle = "Software engineer. Classical liberal."
+
+  # Set disableReadOtherPosts to true in order to hide the links to other posts.
+  disableReadOtherPosts = false
+
+  # Metadata mostly used in document's head
+  description = "Michal Konturek on software engineering; mainly iOS, Objective-C and Swift."
+  keywords = "homepage, blog"
+  images = [""]
+
+  # Directory name of your blog content (default is `content/posts`)
+  contentTypeName = "posts"
+
+  # Default theme "light" or "dark"
+  defaultTheme = "dark"
+
+[taxonomies]
+    category = "blog"
+    tag      = "tags"
+    series   = "series"
+
+[languages]
+  [languages.en]
+    title = "Michal Konturek"
+    subtitle = "A simple theme for Hugo"
+    keywords = ""
+    copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+    readOtherPosts = "Read other posts"
+
+    [languages.en.params.logo]
+      logoText = "alloc init"
+      logoHomeLink = "/"
+    # or
+    #
+    # path = "/img/your-example-logo.svg"
+    # alt = "Your example logo alt text"
+
+    [[params.social]]
+      name = "keybase"
+      url = "https://keybase.io/michalkonturek"
+
+    [[params.social]]
+      name = "github"
+      url = "https://github.com/michalkonturek"
+
+    [[params.social]]
+      name = "linkedin"
+      url = "https://linkedin.com/in/michalkonturek"
+
+    [[params.social]]
+      name = "twitter"
+      url = "https://twitter.com/michalkonturek"
+
+  # And you can even create generic menu
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "/about"
+
+  [[menu.main]]
+    identifier = "posts"
+    name       = "Posts"
+    url        = "/posts"
