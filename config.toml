@@ -1,5 +1,5 @@
 baseurl      = "https://michal.codes"
-title        = "My Blog"
+title        = ""
 languageCode = "en-us"
 theme        = "hello-friend-ng"
 
@@ -34,13 +34,13 @@ theme        = "hello-friend-ng"
 [languages]
   [languages.en]
     title = "Michal Konturek"
-    subtitle = "A simple theme for Hugo"
+    subtitle = ""
     keywords = ""
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
     readOtherPosts = "Read other posts"
 
     [languages.en.params.logo]
-      logoText = "alloc init"
+      logoText = "$ cd /home/"
       logoHomeLink = "/"
     # or
     #
