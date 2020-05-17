@@ -3,6 +3,9 @@ title        = ""
 languageCode = "en-us"
 theme        = "hello-friend-ng"
 
+[author]
+  name      = "Michal Konturek"
+
 [params]
   dateform        = "Jan 2, 2006"
   dateformShort   = "Jan 2"
