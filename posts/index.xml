@@ -1,0 +1,162 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Michal Konturek</title><link>https://michal.codes/posts/</link><description>Recent content in Posts on Michal Konturek</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>&lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0&lt;/a></copyright><lastBuildDate>Wed, 04 Jun 2014 06:37:10 +0100</lastBuildDate><atom:link href="https://michal.codes/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Integrating Cocoapods with a Swift project</title><link>https://michal.codes/posts/integrating-cocoapods-with-a-swift-project/</link><pubDate>Wed, 04 Jun 2014 06:37:10 +0100</pubDate><guid>https://michal.codes/posts/integrating-cocoapods-with-a-swift-project/</guid><description>As Apple introduced Swift, their new programming language, you probably wonder how easily you can integrate it with existing Objective-C libraries that are available via CocoaPods.
+You begin with creating a Podfile:
+pod 'MKUnits', '~&amp;gt; 2.0.0' and running pod install to install pods in your project.
+Nice, so far so good. Cocoapods successfully integrated with Xcode 6 project. All we need to do now is to import our pod header file into Swift project.</description><content type="html"><![CDATA[<p>As Apple introduced <a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html">Swift</a>, their new programming language, you probably wonder how easily you can integrate it with existing Objective-C libraries that are available via <a href="http://cocoapods.org/">CocoaPods</a>.</p>
+<p>You begin with creating a <code>Podfile</code>:</p>
+<pre><code>pod 'MKUnits', '~&gt; 2.0.0'
+</code></pre><p>and running <code>pod install</code> to install pods in your project.</p>
+<p>Nice, so far so good. <a href="http://cocoapods.org/">Cocoapods</a> successfully integrated with <a href="https://developer.apple.com/xcode/">Xcode 6</a> project. All we need to do now is to import our pod header file into <a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html">Swift</a> project. How do you do that?</p>
+<p>Definitely not by adding <code>#import &lt;MKUnits/MKUnits.h&gt;</code> to a <a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html">Swift</a> file as it would result in this error:</p>
+<pre><code>Expected expression
+Expected identifier in import declaration
+</code></pre>
+<p>To expose Objective-C files to <a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html">Swift</a> you must use <strong>Objective-C bridging header</strong>, as <a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html">Mix and Match</a> section of <a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/buildingcocoaapps/index.html">Using Swift with Cocoa and Objective-C</a> documentation explains.</p>
+<p>To do so, you must create a new Objective-C header file, let&rsquo;s call it <code>Example-Bridging-Header.h</code>, and add it to the project. Then, you need to set <code>Objective-C Bridging Header</code> for your target:</p>
+<p><img src="/images/post-xcode-bridge.png" alt="Xcode Bridging Header"></p>
+<p>and finally add import statement to the <strong>bridge header</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">#<span style="color:#66d9ef">import</span> &lt;<span style="color:#a6e22e">MKUnits</span><span style="color:#f92672">/</span><span style="color:#a6e22e">MKUnits</span>.<span style="color:#a6e22e">h</span>&gt;
+</code></pre></div><p>Voilà! Now you can use your pods in <a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html">Swift</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> kilograms = NSNumber.mass_kilogram(<span style="color:#ae81ff">2</span>)()
+<span style="color:#66d9ef">let</span> pounds = NSNumber.mass_pound(<span style="color:#ae81ff">10</span>)()
+<span style="color:#66d9ef">let</span> result = kilograms.add(pounds)
+println(result)
+</code></pre></div><p>You can also integrate imported Objective-C classes with <a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html">Swift</a> types. For example, by creating an extension for <code>Int</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">Int</span> {
+
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">mass_kilogram</span>() -&gt; MKQuantity {
+        <span style="color:#66d9ef">return</span> MKQuantity.mass_kilogramWithAmount(<span style="color:#66d9ef">self</span>)
+    }
+
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">mass_pound</span>() -&gt; MKQuantity {
+        <span style="color:#66d9ef">return</span> MKQuantity.mass_poundWithAmount(<span style="color:#66d9ef">self</span>)
+    }
+}
+</code></pre></div><p>you can replace previous code with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> kilograms = <span style="color:#ae81ff">2.</span>mass_kilogram()
+<span style="color:#66d9ef">let</span> pounds = <span style="color:#ae81ff">10.</span>mass_pound()
+<span style="color:#66d9ef">let</span> result = kilograms.add(pounds)
+println(result)
+</code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/buildingcocoaapps/MixandMatch.html">Swift and Objective-C in the Same Project</a></li>
+<li><a href="https://developer.apple.com/library/prerelease/ios/documentation/swift/conceptual/swift_programming_language/index.html">The Swift Programming Language</a></li>
+</ul>
+]]></content></item><item><title>Implementing Unit conversion library</title><link>https://michal.codes/posts/implementing-unit-conversion-library/</link><pubDate>Mon, 01 Jul 2013 18:19:29 +0100</pubDate><guid>https://michal.codes/posts/implementing-unit-conversion-library/</guid><description>Last week I decided to implement unit conversion library for Objective-C called MKUnits. I was fully aware that there were many open-sourced implementation already available, but unfortunately none of them fitted my needs.
+I required a library that:
+is easily extendable has built-in rounding functionality is precise up to at least 10 decimal places allows manipulation between units of the same group, i.e. kg and pounds, without the need of conversion Quantity Pattern Before I started coding, I had a quick read through the chapter of Analysis Patterns by Martin Fowler, which describes the Quantity Pattern.</description><content type="html"><![CDATA[<p>Last week I decided to implement unit conversion library for Objective-C called <a href="https://github.com/michalkonturek/MKUnits">MKUnits</a>. I was fully aware that there were many open-sourced implementation already available, but unfortunately none of them fitted my needs.</p>
+<p>I required a library that:</p>
+<ul>
+<li>is easily extendable</li>
+<li>has built-in rounding functionality</li>
+<li>is precise up to at least 10 decimal places</li>
+<li>allows manipulation between units of the same group, i.e. kg and pounds, without the need of conversion</li>
+</ul>
+<h3 id="quantity-pattern">Quantity Pattern</h3>
+<p>Before I started coding, I had a quick read through the chapter of <a href="http://www.amazon.co.uk/Analysis-Patterns-Reusable-Object-Models/dp/0201895420">Analysis Patterns</a> by <a href="http://martinfowler.com/">Martin Fowler</a>, which describes the <strong>Quantity Pattern</strong>. This pattern is extremely useful when you want to represent dimensioned quantities.</p>
+<p>The idea behind this pattern is straightforward; it is a class that represents both the <code>amount</code> and the <code>unit</code>, and allows arithmetic behaviour, e.g. addition and subtraction, and conversion to other quantities.</p>
+<p>The initial interface for the <code>MKQuantity</code> was:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MKUnit</span>;
+
+@interface MKQuantity : NSObject
+
+@property (nonatomic, copy) NSDecimalNumber <span style="color:#f92672">*</span>amount;
+@property (nonatomic, strong) MKUnit <span style="color:#f92672">*</span>unit;
+
+<span style="color:#f92672">-</span> (id)initWithAmount:(NSNumber <span style="color:#f92672">*</span>)amount withUnit:(MKUnit <span style="color:#f92672">*</span>)unit;
+
+<span style="color:#f92672">-</span> (instancetype)add:(MKQuantity <span style="color:#f92672">*</span>)other;
+<span style="color:#f92672">-</span> (instancetype)subtract:(MKQuantity <span style="color:#f92672">*</span>)other;
+
+<span style="color:#f92672">-</span> (instancetype)convertTo:(MKUnit <span style="color:#f92672">*</span>)unit;
+
+<span style="color:#f92672">-</span> (NSComparisonResult)compare:(MKQuantity <span style="color:#f92672">*</span>)other;
+
+@end
+</code></pre></div><p>Also, it&rsquo;s worth to mention that <code>MKQuantity</code> is a <strong>value object</strong>.</p>
+<blockquote>
+<p>A <strong>value object</strong> is a simple object whose equality is not based on identity.</p>
+</blockquote>
+<p>In other words, two value objects are equal if all their attributes are equal. In this case, it is <code>amount</code> and <code>unit</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#f92672">-</span> (BOOL)isEqual:(id)object {
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>[object isKindOfClass:[<span style="color:#66d9ef">self</span> <span style="color:#66d9ef">class</span>]]) <span style="color:#66d9ef">return</span> NO;
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>[[object unit] isEqual:<span style="color:#66d9ef">self</span>.unit]) <span style="color:#66d9ef">return</span> NO;
+    <span style="color:#66d9ef">return</span> [<span style="color:#66d9ef">self</span>.amount isEqual:[object amount]];
+}
+
+<span style="color:#f92672">-</span> (NSUInteger)hash {
+    <span style="color:#66d9ef">return</span> [[NSString stringWithFormat:@<span style="color:#e6db74">&#34;%@%@%@&#34;</span>,
+             [<span style="color:#66d9ef">self</span> <span style="color:#66d9ef">class</span>], <span style="color:#66d9ef">self</span>.unit.symbol, <span style="color:#66d9ef">self</span>.amount] hash];
+}
+</code></pre></div><p><code>MKQuantity</code> is associated with <code>MKUnit</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@interface MKUnit : NSObject&lt;NSCopying&gt;
+
+@property (nonatomic, strong) NSString <span style="color:#f92672">*</span>name;
+@property (nonatomic, strong) NSString <span style="color:#f92672">*</span>symbol;
+@property (nonatomic, strong) NSDecimalNumber <span style="color:#f92672">*</span>ratio;
+
+<span style="color:#f92672">-</span> (id)initWithName:(NSString <span style="color:#f92672">*</span>)name
+        withSymbol:(NSString <span style="color:#f92672">*</span>)symbol
+        withRatio:(NSDecimalNumber <span style="color:#f92672">*</span>)ratio;
+
+@end
+</code></pre></div><p>The <code>ratio</code> property is used to convert unit to base unit, eg. for Length a base unit is <code>meter</code>, therefore, the ratio for <code>kilometer</code> unit is 1000 as <code>amount_in_meters = 1000 * amount_in_kilometers</code>.</p>
+<h3 id="unit-conversion">Unit conversion</h3>
+<p>Since this is a unit conversion library, the first type of a behaviour to be added is conversion.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#f92672">-</span> (instancetype)convertTo:(MKUnit <span style="color:#f92672">*</span>)unit {
+    [<span style="color:#66d9ef">self</span> _assert_that_is_convertible_with_unit:unit];
+
+    id converted = [<span style="color:#66d9ef">self</span>.unit convertAmount:<span style="color:#66d9ef">self</span>.amount to:unit];
+    <span style="color:#66d9ef">return</span> [[<span style="color:#66d9ef">self</span> <span style="color:#66d9ef">class</span>] createWithAmount:converted withUnit:unit];
+}
+</code></pre></div><p>The conversion process of unit A to unit B consists of:</p>
+<ul>
+<li>asserting that unit A is convertible with unit B</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#f92672">-</span> (void)_assert_that_is_convertible_with_unit:(MKUnit <span style="color:#f92672">*</span>)unit {
+    NSAssert(
+      [<span style="color:#66d9ef">self</span>.unit isConvertibleWith:unit],
+      UNITS_NOT_CONVERTIBLE
+      );
+}
+</code></pre></div><p>The aim is to perform conversion and arithmetic operations not only on the same units, but also on the other units of the same quantity, eg. adding 500 pounds to 2.5 kilograms should be allowed, but adding 500 grams to 1 meter should not.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#f92672">-</span> (BOOL)isConvertibleWith:(MKUnit <span style="color:#f92672">*</span>)unit {
+    <span style="color:#66d9ef">return</span> [unit isMemberOfClass:[<span style="color:#66d9ef">self</span> <span style="color:#66d9ef">class</span>]];
+}
+</code></pre></div><ul>
+<li>converting <code>amount</code> of unit A to <code>amount</code> of unit B</li>
+</ul>
+<p>Firstly the <code>amount</code> of unit A must be converted to <code>amount</code> of base unit, and then the result is converted to <code>amount</code> of unit B.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#f92672">-</span> (NSNumber <span style="color:#f92672">*</span>)convertAmount:(NSNumber <span style="color:#f92672">*</span>)amount to:(MKUnit <span style="color:#f92672">*</span>)unit {
+    <span style="color:#66d9ef">return</span> [<span style="color:#66d9ef">self</span> convertAmount:amount from:<span style="color:#66d9ef">self</span> to:unit];
+}
+
+<span style="color:#f92672">-</span> (NSNumber <span style="color:#f92672">*</span>)convertAmount:(NSNumber <span style="color:#f92672">*</span>)amount
+                       from:(MKUnit <span style="color:#f92672">*</span>)from to:(MKUnit <span style="color:#f92672">*</span>)to {
+    NSAssert([from isConvertibleWith:to], UNITS_NOT_CONVERTIBLE);
+
+    id baseAmount = [from convertToBaseUnit:amount];
+    id converted = [to convertFromBaseUnit:baseAmount];
+    <span style="color:#66d9ef">return</span> converted;
+}
+</code></pre></div><ul>
+<li>creating new <code>Quantity</code> object of unit B with converted <code>amount</code></li>
+</ul>
+<p>This is due general consensus that a <code>Value Object</code> should be entirely immutable.</p>
+<h3 id="arithmetic">Arithmetic</h3>
+<p>Addition and subtraction operations of two quantities are allowed as long as their units are convertible.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#f92672">-</span> (instancetype)add:(MKQuantity <span style="color:#f92672">*</span>)other {
+    MKQuantity <span style="color:#f92672">*</span>converted = [other convertTo:<span style="color:#66d9ef">self</span>.unit];
+    id amount = [<span style="color:#66d9ef">self</span>.amount decimalNumberByAdding:converted.amount];
+    <span style="color:#66d9ef">return</span> [[<span style="color:#66d9ef">self</span> <span style="color:#66d9ef">class</span>] createWithAmount:amount withUnit:<span style="color:#66d9ef">self</span>.unit];
+}
+
+<span style="color:#f92672">-</span> (instancetype)subtract:(MKQuantity <span style="color:#f92672">*</span>)other {
+    MKQuantity <span style="color:#f92672">*</span>converted = [other convertTo:<span style="color:#66d9ef">self</span>.unit];
+    id amount = [<span style="color:#66d9ef">self</span>.amount decimalNumberBySubtracting:converted.amount];
+    <span style="color:#66d9ef">return</span> [[<span style="color:#66d9ef">self</span> <span style="color:#66d9ef">class</span>] createWithAmount:amount withUnit:<span style="color:#66d9ef">self</span>.unit];
+}
+</code></pre></div><p><strong>NB</strong> As this is a unit conversion library, we should only allow multiplication and division by scalar numbers.</p>
+<p>If you would like to know more, please visit <a href="https://github.com/michalkonturek/MKUnits">MKUnits GitHub repository</a>.</p>
+<p>I am <a href="http://twitter.com/michalkonturek">@michalkonturek</a> on Twitter.</p>
+<p>Looking forward to your feedback.</p>
+]]></content></item></channel></rss>
