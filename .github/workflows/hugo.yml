@@ -41,8 +41,10 @@ jobs:
         run: sudo snap install dart-sass
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
         with:
-          submodules: recursive
+          go-version: "stable"
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
