@@ -34,7 +34,7 @@ hugo mod get -u && hugo mod tidy
 
 ## Deployment
 
-Pushing to the `develop` branch triggers GitHub Actions (`.github/workflows/hugo.yml`), which builds the site with Hugo and deploys via the GitHub Pages artifact mechanism (not branch-based). The site is served at michalkonturek.dev.
+Pushing to the `main` branch triggers GitHub Actions (`.github/workflows/hugo.yml`), which builds the site with Hugo and deploys via the GitHub Pages artifact mechanism (not branch-based). The site is served at michalkonturek.dev.
 
 ## Content Front Matter
 
