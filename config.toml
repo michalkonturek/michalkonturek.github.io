@@ -1,5 +1,5 @@
 baseurl      = "https://michal.codes"
-title        = ""
+title        = "Michal Konturek"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
 
@@ -7,6 +7,7 @@ theme        = "hello-friend-ng"
   name      = "Michal Konturek"
 
 [params]
+  author          = "Michal Konturek"
   dateform        = "Jan 2, 2006"
   dateformShort   = "Jan 2"
   dateformNum     = "2006-01-02"
@@ -51,10 +52,6 @@ theme        = "hello-friend-ng"
     # alt = "Your example logo alt text"
 
     [[params.social]]
-      name = "keybase"
-      url = "https://keybase.io/michalkonturek"
-
-    [[params.social]]
       name = "github"
       url = "https://github.com/michalkonturek"
 
@@ -64,7 +61,7 @@ theme        = "hello-friend-ng"
 
     [[params.social]]
       name = "twitter"
-      url = "https://twitter.com/michalkonturek"
+      url = "https://x.com/michalkonturek"
 
   # And you can even create generic menu
   [[menu.main]]
