@@ -3,9 +3,6 @@ title        = "Michal Konturek"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
 
-[author]
-  name      = "Michal Konturek"
-
 [params]
   author          = "Michal Konturek"
   dateform        = "Jan 2, 2006"
