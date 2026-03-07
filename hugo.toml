@@ -18,7 +18,7 @@ languageCode = "en-us"
   disableReadOtherPosts = false
 
   # Metadata mostly used in document's head
-  description = "Michal Konturek on software engineering; mainly iOS, Objective-C and Swift."
+  description = "Michal Konturek on software engineering."
   keywords = "homepage, blog"
   images = [""]
 
