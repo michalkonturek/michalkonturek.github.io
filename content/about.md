@@ -15,5 +15,5 @@ In my spare time I create awesome things with code, which (most of them) I open 
 
 All original code on this website is Copyright © 2014 [Michal Konturek][ME] and licensed under the [MIT license][MIT].
 
-[ME]:http://michal.codes
+[ME]:http://michalkonturek.dev
 [MIT]:http://opensource.org/comment/935
