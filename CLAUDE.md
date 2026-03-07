@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a Hugo static site (personal blog at michal.codes). Content is written in Markdown, styled with the `hello-friend-ng` theme (included as a git submodule).
+This is a Hugo static site (personal blog at michalkonturek.dev). Content is written in Markdown, styled with the `hello-friend-ng` theme managed as a Hugo module.
 
 ## Commands
 
@@ -17,21 +17,24 @@ hugo --minify
 
 # Create a new post
 hugo new posts/my-post-title.md
+
+# Update theme
+hugo mod get -u && hugo mod tidy
 ```
 
 ## Architecture
 
-- `config.toml` — site configuration: theme, language, social links, nav menus
+- `hugo.toml` — site configuration: theme, language, social links, nav menus
+- `go.mod` / `go.sum` — Hugo module dependencies (theme is `github.com/rhazdon/hugo-theme-hello-friend-ng`)
 - `content/posts/` — blog posts as Markdown files with YAML/TOML front matter
 - `content/about.md` — the About page
 - `archetypes/default.md` — template used when creating new content with `hugo new`
-- `static/` — static assets (images, etc.) served at the root URL
-- `themes/hello-friend-ng/` — Hugo theme (git submodule); avoid modifying directly
+- `static/` — static assets (images, CNAME, etc.) served at the root URL
 - `resources/_gen/` — auto-generated asset cache (do not edit)
 
 ## Deployment
 
-Pushing to the `develop` branch triggers GitHub Actions (`.github/workflows/gh.yml`), which builds the site with `hugo --minify` and deploys the `public/` directory to the `master` branch (served via GitHub Pages at michal.codes).
+Pushing to the `develop` branch triggers GitHub Actions (`.github/workflows/hugo.yml`), which builds the site with Hugo and deploys via the GitHub Pages artifact mechanism (not branch-based). The site is served at michalkonturek.dev.
 
 ## Content Front Matter
 
