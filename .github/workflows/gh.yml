@@ -23,7 +23,7 @@ jobs:
 
       - name: CNAME
         run: |
-          echo "michal.codes" > ./public/CNAME
+          echo "michalkonturek.dev" > ./public/CNAME
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
